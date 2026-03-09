@@ -4,7 +4,7 @@ P&ID (Piping and Instrumentation Diagram) upload, graph extraction, SOP upload, 
 
 ## Demo
 
-![Working demo](assets/Demo.mp4)
+https://github.com/user-attachments/assets/ee287c20-f397-4b9b-9f50-b0158a7c14e7
 
 ## Prerequisites
 
