@@ -2,6 +2,10 @@
 
 P&ID (Piping and Instrumentation Diagram) upload, graph extraction, SOP upload, and validation. Backend uses YOLOv5 for symbol detection, OCR, and LangChain/Gemini for SOP processing.
 
+## Demo
+
+![Working demo](assets/Demo.mov)
+
 ## Prerequisites
 
 - **Docker & Docker Compose** (recommended), or:
