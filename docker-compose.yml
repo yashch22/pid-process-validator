@@ -1,0 +1,61 @@
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: piduser
+      POSTGRES_PASSWORD: pidpass
+      POSTGRES_DB: pid_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U piduser -d pid_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - backend/.env
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    environment:
+      DATABASE_URL: postgresql+asyncpg://piduser:pidpass@db:5432/pid_db
+      DATABASE_URL_SYNC: postgresql://piduser:pidpass@db:5432/pid_db
+      UPLOAD_DIR: /data/uploads
+      PID_UPLOAD_DIR: /data/uploads/pid
+      SOP_UPLOAD_DIR: /data/uploads/sop
+      CHROMA_PERSIST_DIR: /data/chroma
+      # GEMINI_* come from env_file: backend/.env (do not set here or they override and get empty)
+    volumes:
+      - uploads_data:/data
+      # Mount weights so best.pt is available (excluded from image via .dockerignore to speed builds)
+      - ./backend/weights:/app/weights:ro
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL:-http://localhost:8000}
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
+  uploads_data:

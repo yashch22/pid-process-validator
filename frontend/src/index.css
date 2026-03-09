@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 228 14% 5%;
+    --foreground: 0 0% 95%;
+
+    --card: 228 12% 8%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 228 12% 8%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 215 100% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 228 10% 12%;
+    --secondary-foreground: 0 0% 82%;
+
+    --muted: 228 10% 12%;
+    --muted-foreground: 228 8% 48%;
+
+    --accent: 228 10% 11%;
+    --accent-foreground: 0 0% 95%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 60% 48%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 56%;
+    --warning-foreground: 0 0% 100%;
+
+    --info: 215 100% 60%;
+    --info-foreground: 0 0% 100%;
+
+    --border: 228 12% 12%;
+    --input: 228 12% 12%;
+    --ring: 215 100% 60%;
+
+    --radius: 0.75rem;
+
+    --glass-bg: 228 14% 8%;
+    --glass-border: 228 12% 16%;
+
+    --node-pump: 215 100% 60%;
+    --node-valve: 152 60% 48%;
+    --node-sensor: 265 70% 62%;
+    --node-tank: 30 90% 56%;
+    --node-pipe: 228 8% 50%;
+    --node-compressor: 340 68% 58%;
+
+    --sidebar-background: 228 14% 6%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 215 100% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 228 10% 10%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 228 12% 12%;
+    --sidebar-ring: 215 100% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Glassmorphism utilities */
+@layer utilities {
+  .glass {
+    background: hsla(var(--glass-bg), 0.6);
+    backdrop-filter: blur(24px) saturate(1.4);
+    -webkit-backdrop-filter: blur(24px) saturate(1.4);
+    border: 1px solid hsla(var(--glass-border), 0.5);
+  }
+  .glass-strong {
+    background: hsla(var(--glass-bg), 0.8);
+    backdrop-filter: blur(40px) saturate(1.6);
+    -webkit-backdrop-filter: blur(40px) saturate(1.6);
+    border: 1px solid hsla(var(--glass-border), 0.6);
+  }
+  .glass-subtle {
+    background: hsla(var(--glass-bg), 0.4);
+    backdrop-filter: blur(16px) saturate(1.2);
+    -webkit-backdrop-filter: blur(16px) saturate(1.2);
+    border: 1px solid hsla(var(--glass-border), 0.3);
+  }
+  .glow-primary {
+    box-shadow: 0 0 40px -8px hsla(var(--primary), 0.15), 0 0 80px -16px hsla(var(--primary), 0.08);
+  }
+  .glow-sm {
+    box-shadow: 0 0 20px -4px hsla(var(--primary), 0.12);
+  }
+  .gradient-border {
+    position: relative;
+  }
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      hsla(var(--primary), 0.15) 0%,
+      transparent 40%,
+      transparent 60%,
+      hsla(var(--primary), 0.08) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
+
+/* Ambient background mesh */
+.ambient-mesh {
+  background-image:
+    radial-gradient(ellipse 600px 400px at 20% 30%, hsla(var(--primary), 0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 350px at 80% 60%, hsla(265, 70%, 62%, 0.03) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 300px at 50% 90%, hsla(152, 60%, 48%, 0.02) 0%, transparent 70%);
+}
+
+/* React Flow overrides */
+.react-flow__minimap {
+  border-radius: 16px !important;
+  overflow: hidden;
+  border: 1px solid hsla(var(--glass-border), 0.5) !important;
+  background: hsla(var(--glass-bg), 0.7) !important;
+  backdrop-filter: blur(16px) !important;
+}
+.react-flow__controls {
+  border-radius: 16px !important;
+  overflow: hidden;
+  border: 1px solid hsla(var(--glass-border), 0.5) !important;
+  background: hsla(var(--glass-bg), 0.7) !important;
+  backdrop-filter: blur(16px) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4) !important;
+}
+.react-flow__controls-button {
+  background: transparent !important;
+  border-color: hsla(var(--glass-border), 0.3) !important;
+  fill: hsl(var(--foreground)) !important;
+  color: hsl(var(--foreground)) !important;
+  width: 32px !important;
+  height: 32px !important;
+}
+.react-flow__controls-button:hover {
+  background: hsla(var(--primary), 0.1) !important;
+}
+.react-flow__attribution {
+  display: none !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsla(var(--muted-foreground), 0.2);
+  border-radius: 100px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsla(var(--muted-foreground), 0.35);
+}

@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv
+venv
+env/
+
+# Environment & secrets
+.env
+*.env
+!.env.example
+
+# Model weights (uncomment if you don't want to track them)
+# backend/weights/*.pt

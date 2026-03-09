@@ -1,0 +1,40 @@
+# API
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+python-multipart>=0.0.6
+
+# Config
+pydantic-settings>=2.0.0
+
+# Database
+sqlalchemy[asyncio]>=2.0.0
+asyncpg>=0.29.0
+psycopg2-binary>=2.9.9
+
+# LangChain + Gemini
+langchain-google-genai>=2.0.0
+langchain-core>=0.2.0
+
+# Optional: vector store for retrieval
+chromadb>=0.4.0
+
+# PDF (for SOP or P&ID)
+pymupdf>=1.23.0
+python-docx>=0.8.11
+
+# Pipeline (backend/pid_graph) - heavy deps
+opencv-python-headless>=4.8.0
+numpy>=1.24.0
+networkx>=3.0
+scipy>=1.10.0
+scikit-image>=0.21.0
+scikit-learn>=1.3.0
+Pillow>=9.5.0
+matplotlib>=3.7.0
+pandas>=2.0.0
+# YOLO (required by yolov5 models/utils)
+ultralytics>=8.0.0
+torch>=2.0.0
+torchvision>=0.15.0
+# OCR
+pytesseract>=0.3.10

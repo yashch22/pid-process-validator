@@ -1,0 +1,42 @@
+# Exclude large weight files from build context (mount at runtime instead)
+backend/weights/*.pt
+backend/weights/*.pt.*
+*.pt
+*.pt.*
+
+# Git and IDE
+.git
+.gitignore
+.cursor
+.vscode
+*.swp
+*~
+
+# Python
+__pycache__
+*.py[cod]
+*.egg-info
+.eggs
+.pytest_cache
+.mypy_cache
+*.so
+.Python
+venv
+.venv
+env
+
+# Node (frontend – only backend context needs to be small when building backend)
+node_modules
+frontend/dist
+frontend/node_modules
+
+# Extras and outputs (not needed in backend image)
+extras/pid_graph_yolo_v5/outputs
+extras/pid_graph_yolo_v5/yolov5/.git
+**/outputs
+**/*.log
+
+# Docs and misc
+*.md
+!backend/weights/README.md
+.DS_Store
